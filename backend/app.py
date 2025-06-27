@@ -29,7 +29,6 @@ def analyze():
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
         result = analyze_frame(frame)
-
         return jsonify(result)
 
     except Exception as e:
