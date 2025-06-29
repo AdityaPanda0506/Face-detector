@@ -1,5 +1,3 @@
-# app.py
-
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Music Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .header {
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .platforms {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .platform-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 280px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .platform-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-icon {
+            background: linear-gradient(45deg, #ff0000, #ff4444);
+            color: white;
+        }
+
+        .spotify-icon {
+            background: linear-gradient(45deg, #1db954, #1ed760);
+            color: white;
+        }
+
+        .platform-card:hover .platform-icon {
+            transform: scale(1.1);
+        }
+
+        .platform-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .platform-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .select-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .select-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .platforms {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .platform-card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+
+        /* Animation for page load */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .platform-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .platform-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Choose Your Music</h1>
+            <p>Select your preferred platform to discover emotion-based music</p>
+        </div>
+        
+        <div class="platforms">
+            <a href="http://localhost:8501/" class="platform-card" onclick="selectPlatform('youtube')">
+                <div class="platform-icon youtube-icon">
+                    ▶️
+                </div>
+                <h2>YouTube</h2>
+                <p>Discover music videos and live performances with our emotion-based recommendations</p>
+                <button class="select-btn">Select YouTube</button>
+            </a>
+            
+            <a href="http://localhost:8502/" class="platform-card" onclick="selectPlatform('spotify')">
+                <div class="platform-icon spotify-icon">
+                    🎵
+                </div>
+                <h2>Spotify</h2>
+                <p>Stream your favorite tracks and playlists tailored to your emotional state</p>
+                <button class="select-btn">Select Spotify</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function selectPlatform(platform) {
+            // Add visual feedback
+            const cards = document.querySelectorAll('.platform-card');
+            cards.forEach(card => card.style.transform = 'scale(0.95)');
+            
+            setTimeout(() => {
+                cards.forEach(card => card.style.transform = '');
+                
+                // Here you can add logic to redirect to the appropriate platform
+                if (platform === 'youtube') {
+                    // Redirect to YouTube music page or trigger YouTube functionality
+                    console.log('YouTube selected');
+                    // window.location.href = 'music_youtube.html'; // or your YouTube integration
+                } else if (platform === 'spotify') {
+                    // Redirect to Spotify music page or trigger Spotify functionality
+                    console.log('Spotify selected');
+                    window.location = 'music_spotify.py'; // or your Spotify integration
+                }
+            }, 150);
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.platform-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
